@@ -7,6 +7,11 @@ function Login() {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
 
+  let [user,setUser] = useState(null);
+  let [loader,setLoader] = useState(false);
+  let [error,setError] = useState(null);
+
+
   const changeEmail = (e) => {
     console.log(e.target.value);
     setEmail(e.target.value);
@@ -16,14 +21,22 @@ function Login() {
   };
 
     const printCred = async function(){
-    let userCred = await signInWithEmailAndPassword(auth,email,password);
-    if(userCred){
-        console.log("user exist");
-    }else{
-        console.log("not registered");
-    }
-  };
+    setLoader(true);
+    let userCred = await 
+    signInWithEmailAndPassword(auth,email,password);
+    console.log(userCred.user.uid);
+    setUser(userCred.user)
+        setLoader(false);
+
+
+
+    };
   return (
+    <>{loader === true ? <h1> Loading....</h1> : 
+
+    user != null ? <h1>user is {user.uid}</h1> : 
+
+
     <>
       <div className="flex-cotainer">
         <span> Email : </span>
@@ -47,7 +60,8 @@ function Login() {
       <button type="submit" onClick={printCred}>
         {" "}
         Submit
-      </button>
+      </button></>
+    }
     </>
   );
 }
