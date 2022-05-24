@@ -30,7 +30,7 @@ function Signup() {
         password
       );
       // console.log(userCred.user.uid);
-      
+      // ..
       
      
       //TODO: will add in firestore => email,name,

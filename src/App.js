@@ -10,12 +10,14 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import { AuthContextProvider } from './Context/AuthContext';
 
 
 
 
 function App() {
   return (
+    <AuthContextProvider>
       <Router>
         <Switch> 
 
@@ -42,6 +44,7 @@ function App() {
         </Switch>
 
       </Router>
+    </AuthContextProvider>
     
   );
 }
